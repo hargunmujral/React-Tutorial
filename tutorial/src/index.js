@@ -4,35 +4,49 @@ import ReactDOM from 'react-dom';
 // CSS
 import './index.css';
 
+// setup vars
+const firstBook = {
+  img: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1427068429l/23346740.jpg',
+  title: 'Sapiens: A Brief History of Humankind',
+  author: 'Yuval Noah Harari'
+}
+
+const secondBook = {
+  img: 'https://images-na.ssl-images-amazon.com/images/I/91SZSW8qSsL.jpg',
+  title: '1984',
+  author: 'George Orwell'
+}
+
 function BookList(){
   return (
     <section className='booklist'>
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-    </section>
-  );
+      <Book img={firstBook.img} 
+        title={firstBook.title}  
+        author={firstBook.author}
+      >
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Laudantium sed voluptas delectus doloremque 
+          saepe rem aut quo harum, deserunt consequatur.
+        </p>
+      </Book>
+      <Book img={secondBook.img} 
+        title={secondBook.title}  
+        author={secondBook.author}
+        />    
+      </section>
+  ); 
 }
 
-const Book = () => {
+const Book = ({img, title, author, children}) => {
   return (
     <article className='book'>
-      <Image></Image>
-      <Title />
-      <Author />
+      <img src={img} alt='' />
+      <h1>{title}</h1>
+      <h4>{author.toUpperCase()}</h4>
+      {children}
     </article>
-  )
+  );
 };
-const Image = () => 
-  <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1427068429l/23346740.jpg" alt="Sapiens" />
-
-const Title = () => <h1>Sapiens: A Brief History of Humankind </h1>
-const Author = () => <h2>Yuval Noah Harari</h2>
 
 ReactDOM.render(<BookList/>, document.getElementById('root'));
